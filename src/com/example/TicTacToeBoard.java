@@ -1,5 +1,4 @@
-package com.example; 
-
+package com.example;
 
 /**
  * Takes in and evaluates a string representing a tic tac toe board.
@@ -10,47 +9,47 @@ public class TicTacToeBoard {
      board1=board.toLowerCase();
   }
 public Evaluation evaluate(){
-    int x_count=0;
-    int o_count=0;
+    int x_counts=0;
+    int o_counts=0;
     if(board1.length()!=9)
     {
-      return Evaluation.InvalidInput;
+      return Evaluation.invalidInput;
     }
     for(int i=0;i<board1.length();i++)
     {
         if(board1.charAt(i)== 'x')
         {
-            x_count++;
+            x_counts++;
         }
         else{
-            o_count++;
+            o_counts++;
         }
     }
     
-    boolean player_x=winner('x',board1);
-    boolean player_o=winner('o',board1);
+    boolean Player_X= Winner('x',board1);
+    boolean Player_Y= Winner('o',board1);
     
   
-    if(Math.abs(x_count - o_count)<=2){
-      return Evaluation.UnreachableState;
+    if(Math.abs(x_counts - o_counts)<=2){
+      return Evaluation.unreachableState;
     }
 
-    if(player_o && player_x){
-      return Evaluation.UnreachableState;
+    if(Player_Y && Player_X){
+      return Evaluation.unreachableState;
     }
-    else if(player_x){
-      return Evaluation.Xwins;
+    else if(Player_X){
+      return Evaluation.xwins;
     }
-    else if(player_o){
-      return Evaluation.Owins;
+    else if(Player_Y){
+      return Evaluation.owins;
     }
     else{
-      return Evaluation.NoWinner;
+      return Evaluation.noWinner;
     }
 
 }
 
-public static boolean winner(char val,String board1){
+public static boolean Winner(char val,String board1){
   
   if((board1.charAt(0)==val)&&(board1.charAt(1)==val)&&(board1.charAt(2)==val))
       return true;
@@ -72,7 +71,7 @@ public static boolean winner(char val,String board1){
 }
 
 public static void main(String args[]){
-  TicTacToeBoard v1=new TicTacToeBoard("XXX...oo.");
+	TicTacToeBoard v1=new TicTacToeBoard("XXX...oo.");
   System.out.println(v1.evaluate());
 
 }
